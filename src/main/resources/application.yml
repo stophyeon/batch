@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: batch
+
+safe:
+  api:
+    serviceKey: "2T2N464N904N0LI0"
