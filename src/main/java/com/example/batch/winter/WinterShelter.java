@@ -1,4 +1,4 @@
-package com.example.batch.shelter;
+package com.example.batch.winter;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,7 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Shelter {
+public class WinterShelter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

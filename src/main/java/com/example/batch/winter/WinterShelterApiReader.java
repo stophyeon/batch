@@ -1,4 +1,4 @@
-package com.example.batch.shelter;
+package com.example.batch.winter;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.batch.item.ItemReader;
@@ -10,24 +10,27 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class ShelterApiReader implements ItemReader<ShelterDto> {
+public class WinterShelterApiReader implements ItemReader<WinterShelterDto> {
 
-    private List<ShelterDto> shelters;
+    private List<WinterShelterDto> shelters;
 
-    @Value("${safe.api.serviceKey}")
+    @Value("${safe.api.winter.serviceKey}")
     private String serviceKey;
+
+    @Value("${safe.api.winter.url}")
+    private String url;
     private int index=0;
     @Override
-    public ShelterDto read() throws Exception {
+    public WinterShelterDto read() throws Exception {
         if(shelters==null) {
-            // REST API 호출
-            StringBuilder urlBuilder = new StringBuilder("https://www.safetydata.go.kr/V2/api/DSSP-IF-00026");
+
+            StringBuilder urlBuilder = new StringBuilder(url);
             urlBuilder.append("?" + "serviceKey=").append(serviceKey);
             urlBuilder.append("&" + "returnType=json");
-            String url = urlBuilder.toString();
-            /* API 키 */
+
+
             RestTemplate rest = new RestTemplate();
-            ResponseEntity<ShelterDto[]> response = rest.getForEntity(url, ShelterDto[].class);
+            ResponseEntity<WinterShelterDto[]> response = rest.getForEntity(urlBuilder.toString(), WinterShelterDto[].class);
             shelters = Arrays.asList(response.getBody());
         }
 

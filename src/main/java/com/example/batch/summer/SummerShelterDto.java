@@ -1,4 +1,4 @@
-package com.example.batch.shelter;
+package com.example.batch.summer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShelterDto {
+public class SummerShelterDto {
     private String shelterId;          // 쉼터시설번호 (RSTR_FCLTY_NO)
     private int year;                 // 년도 (YEAR)
     private String regionCode;        // 지역코드 (ARCD)

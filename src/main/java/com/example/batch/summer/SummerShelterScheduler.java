@@ -1,4 +1,4 @@
-package com.example.batch.shelter;
+package com.example.batch.summer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ShelterScheduler {
+public class SummerShelterScheduler {
     private final JobLauncher jobLauncher;
     private final Job shelterJob;
 
