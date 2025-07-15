@@ -13,7 +13,7 @@ public class SummerShelterProcessor implements ItemProcessor<SummerShelterDto, S
 
     @Override
     public SummerShelterDto process(SummerShelterDto dto) throws Exception {
-        boolean exist = repository.existsByShelterId(dto.getShelterId());
+        boolean exist = repository.existsByFacilityId(dto.getFacilityId());
         return exist ? null : dto;
     }
 }

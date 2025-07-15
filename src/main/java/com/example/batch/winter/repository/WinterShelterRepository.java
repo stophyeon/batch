@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 
 public interface WinterShelterRepository extends JpaRepository<WinterShelter,Long> {
-    public List<WinterShelter> findByRegionCode(String regionCode);
-    public boolean existsByShelterId(String shelterId);
-    public void save(WinterShelterDto dto);
+    //public List<WinterShelter> findByRegionCode(String regionCode);
+    public boolean existsByFacilityId(Long shelterId);
+
 }

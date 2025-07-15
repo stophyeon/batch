@@ -16,22 +16,23 @@ public class WinterShelterBatchJobConfig {
 
     private final WinterShelterApiReader reader;
     private final WinterShelterProcessor processor;
+    private final WinterShelterWriter writer;
 
 
     @Bean
-    public Job shelterJob(JobRepository jobRepository, PlatformTransactionManager txManager) {
-        return new JobBuilder("shelterJob", jobRepository)
-                .start(shelterStep(jobRepository, txManager))
+    public Job winterShelterJob(JobRepository jobRepository, PlatformTransactionManager txManager) {
+        return new JobBuilder("winterShelterJob", jobRepository)
+                .start(winterShelterStep(jobRepository, txManager))
                 .build();
     }
 
     @Bean
-    public Step shelterStep(JobRepository jobRepository, PlatformTransactionManager txManager) {
-        return new StepBuilder("shelterStep", jobRepository)
+    public Step winterShelterStep(JobRepository jobRepository, PlatformTransactionManager txManager) {
+        return new StepBuilder("winterShelterStep", jobRepository)
                 .<WinterShelterDto, WinterShelterDto>chunk(100, txManager)
                 .reader(reader)
                 .processor(processor)
-                //.writer(writer)
+                .writer(writer)
                 .build();
     }
 }

@@ -16,22 +16,23 @@ public class SummerShelterBatchJobConfig {
 
     private final SummerShelterApiReader reader;
     private final SummerShelterProcessor processor;
+    private final SummerShelterWriter writer;
 
 
     @Bean
-    public Job shelterJob(JobRepository jobRepository, PlatformTransactionManager txManager) {
-        return new JobBuilder("shelterJob", jobRepository)
-                .start(shelterStep(jobRepository, txManager))
+    public Job summerShelterJob(JobRepository jobRepository, PlatformTransactionManager txManager) {
+        return new JobBuilder("summerShelterJob", jobRepository)
+                .start(summerShelterStep(jobRepository, txManager))
                 .build();
     }
 
     @Bean
-    public Step shelterStep(JobRepository jobRepository, PlatformTransactionManager txManager) {
-        return new StepBuilder("shelterStep", jobRepository)
+    public Step summerShelterStep(JobRepository jobRepository, PlatformTransactionManager txManager) {
+        return new StepBuilder("summerShelterStep", jobRepository)
                 .<SummerShelterDto, SummerShelterDto>chunk(100, txManager)
                 .reader(reader)
                 .processor(processor)
-                //.writer(writer)
+                .writer(writer)
                 .build();
     }
 }

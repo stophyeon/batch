@@ -1,8 +1,10 @@
+server:
+  port: 8080
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/shelter
-    username: "root"
-    password: "dud990531@"
+    username: root
+    password: dud990531
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -12,17 +14,19 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   application:
     name: batch
-    port: 8080
+  batch:
+    job:
+      enabled: false
 
 safe:
   api:
     winter:
-      url: "/V2/api/DSSP-IF-10804"
+      url: "https://www.safetydata.go.kr/V2/api/DSSP-IF-10804"
       serviceKey: "6Q6R2QY993R2B3TF"
     summer:
-      url: "/V2/api/DSSP-IF-10942"
+      url: "https://www.safetydata.go.kr/V2/api/DSSP-IF-10942"
       serviceKey: "GU0U793IUIOO3KS9"
     weather:
-      url: "/V2/api/DSSP-IF-00026"
+      url: "https://www.safetydata.go.kr/V2/api/DSSP-IF-00026"
       serviceKey: "2T2N464N904N0LI0"
 

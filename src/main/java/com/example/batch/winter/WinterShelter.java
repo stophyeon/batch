@@ -4,13 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "shelters",
-        uniqueConstraints = {
-            @UniqueConstraint(columnNames = {"name", "address"})
-        },
-        indexes = {
-            @Index(name = "idx_region_code", columnList = "regionCode")
-        })
+@Table(name = "winter_shelters", indexes = {
+        @Index(name = "idx_facility_id", columnList = "facilityId")
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,52 +16,38 @@ public class WinterShelter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 내부 DB용 PK
+    private Long id; // 내부 DB용 기본키
 
-    @Column(name = "shelter_id")
-    private String shelterId; // 공공데이터의 쉼터시설번호
+    private String name;               // 쉼터명
 
-    private int year;
+    private String roadAddress;        // 도로명 주소
+    private String addressNumber;      // 지번 주소
 
-    @Column(name = "region_code")
-    private String regionCode;
+    private String facilityType;       // 시설 유형 (FCLT_TYPE)
+    private String facilitySubType;    // 시설 소분류 (FCLTY_SCLAS)
 
-    @Column(name = "facility_type")
-    private String facilityType;
+    private Long facilityId;           // 시설 ID (REARE_FCLT_NO)
 
-    private String name;
+    private Integer capacity;          // 수용 가능 인원 (UTZTN_PSBLTY_TNOP)
 
-    private String address;
+    private String weekdayOpenTime;    // 평일 운영 시작
+    private String weekdayCloseTime;   // 평일 운영 종료
 
-    private Integer area;
+    private String saturdayOpenTime;   // 토요일 운영 시작
+    private String saturdayCloseTime;  // 토요일 운영 종료
 
-    private Integer capacity;
+    private String sundayOpenTime;     // 일요일 운영 시작
+    private String sundayCloseTime;    // 일요일 운영 종료
 
-    private Integer fans;
+    private String holidayOpenTime;    // 공휴일 운영 시작
+    private String holidayCloseTime;   // 공휴일 운영 종료
 
-    @Column(name = "air_conditioners")
-    private Integer airConditioners;
+    private String modifiedAt;         // 수정일시 (문자열 그대로 저장)
 
-    private String longitude;
+    private String remark;             // 비고 (nullable)
 
-    private String latitude;
-
-    @Column(name = "detail_position")
-    private String detailPosition;
-
-    @Column(name = "weekday_start_time")
-    private String weekdayStartTime;
-
-    @Column(name = "weekday_end_time")
-    private String weekdayEndTime;
-
-    @Column(name = "weekend_start_time")
-    private String weekendStartTime;
-
-    @Column(name = "weekend_end_time")
-    private String weekendEndTime;
-
-    @Column(name = "facility_subtype")
-    private String facilitySubType;
+    private Double latitude;           // 위도
+    private Double longitude;          // 경도
 }
+
 

@@ -13,7 +13,7 @@ public class WinterShelterProcessor implements ItemProcessor<WinterShelterDto, W
 
     @Override
     public WinterShelterDto process(WinterShelterDto dto) throws Exception {
-        boolean exist = repository.existsByShelterId(dto.getShelterId());
+        boolean exist = repository.existsByFacilityId(dto.getFacilityId());
         return exist ? null : dto;
     }
 }
