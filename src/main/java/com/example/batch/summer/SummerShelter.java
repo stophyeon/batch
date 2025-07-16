@@ -4,13 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "shelters",
+@Table(name = "summer_shelters",
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"name", "address"})
-        },
-        indexes = {
-            @Index(name = "idx_region_code", columnList = "regionCode")
-        })
+        }
+        )
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,36 +20,32 @@ public class SummerShelter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 내부 DB용 PK
 
-    @Column(name = "shelter_id")
-    private String shelterId; // 공공데이터의 쉼터시설번호
+    @Column(name = "facility_id")
+    private Long facilityId;
 
-    private int year;
+    @Column(name = "shelter_name")
+    private String shelterName;
 
-    @Column(name = "region_code")
-    private String regionCode;
+    @Column(name = "road_address")
+    private String roadAddress;
+
+    @Column(name = "address_number")
+    private String addressNumber;
 
     @Column(name = "facility_type")
     private String facilityType;
 
-    private String name;
+    @Column(name = "facility_sub_type")
+    private String facilitySubType;
 
-    private String address;
+    @Column(name = "usable_people")
+    private Integer usablePeople;
 
-    private Integer area;
+    @Column(name = "longitude")
+    private Double longitude;
 
-    private Integer capacity;
-
-    private Integer fans;
-
-    @Column(name = "air_conditioners")
-    private Integer airConditioners;
-
-    private String longitude;
-
-    private String latitude;
-
-    @Column(name = "detail_position")
-    private String detailPosition;
+    @Column(name = "latitude")
+    private Double latitude;
 
     @Column(name = "weekday_start_time")
     private String weekdayStartTime;
@@ -65,7 +59,40 @@ public class SummerShelter {
     @Column(name = "weekend_end_time")
     private String weekendEndTime;
 
-    @Column(name = "facility_subtype")
-    private String facilitySubType;
+    @Column(name = "weekend_open_yn")
+    private String weekendOpenYn;
+
+    @Column(name = "night_open_yn")
+    private String nightOpenYn;
+
+    @Column(name = "stay_possible_yn")
+    private String stayPossibleYn;
+
+    @Column(name = "cold_air_conditioner_count")
+    private Integer coldAirConditionerCount;
+
+    @Column(name = "electric_fan_count")
+    private Integer electricFanCount;
+
+    @Column(name = "area")
+    private Integer area;
+
+    @Column(name = "year")
+    private String year;
+
+    @Column(name = "area_code")
+    private String areaCode;
+
+    @Column(name = "manager_dept_code")
+    private String managerDeptCode;
+
+    @Column(name = "modified_time")
+    private String modifiedTime;
+
+    @Column(name = "input_time")
+    private String inputTime;
+
+    @Column(name = "remark")
+    private String remark;
 }
 

@@ -9,60 +9,78 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SummerShelterDto {
-    @JsonProperty("REARE_NM")
-    private String name;  // 쉼터명
+    @JsonProperty("RSTR_FCLTY_NO")
+    private Long facilityId;
 
-    @JsonProperty("SNDY_OPER_BGNG_HR")
-    private String sundayOpenTime;
+    @JsonProperty("RSTR_NM")
+    private String shelterName;
 
-    @JsonProperty("MDFCN_HR")
-    private String modifiedAt;  // 수정 일시 (yyyy-MM-dd HH:mm:ss.SSS)
-
-    @JsonProperty("RONA_DADDR")
+    @JsonProperty("RN_DTL_ADRES")
     private String roadAddress;
 
-    @JsonProperty("LHLDY_OPER_END_HR")
-    private String holidayCloseTime;
+    @JsonProperty("DTL_ADRES")
+    private String addressNumber;
 
-    @JsonProperty("DADDR")
-    private String addressNumber;  // 지번
-
-    @JsonProperty("UTZTN_PSBLTY_TNOP")
-    private Integer capacity;  // 수용 가능 인원
-
-    @JsonProperty("WKDY_OPER_BGNG_HR")
-    private String weekdayOpenTime;
-
-    @JsonProperty("STDY_OPER_END_HR")
-    private String saturdayCloseTime;
-
-    @JsonProperty("SNDY_OPER_END_HR")
-    private String sundayCloseTime;
-
-    @JsonProperty("FCLT_TYPE")
+    @JsonProperty("FCLTY_TY")
     private String facilityType;
 
     @JsonProperty("FCLTY_SCLAS")
     private String facilitySubType;
 
-    @JsonProperty("REARE_FCLT_NO")
-    private Long facilityId;
+    @JsonProperty("USE_PSBL_NMPR")
+    private Integer usablePeople;
 
-    @JsonProperty("LOT")
+    @JsonProperty("LO")
     private Double longitude;
 
-    @JsonProperty("LAT")
+    @JsonProperty("LA")
     private Double latitude;
 
-    @JsonProperty("STDY_OPER_BGNG_HR")
-    private String saturdayOpenTime;
+    @JsonProperty("WKDAY_OPER_BEGIN_TIME")
+    private String weekdayStartTime;
 
-    @JsonProperty("RMRK")
+    @JsonProperty("WKDAY_OPER_END_TIME")
+    private String weekdayEndTime;
+
+    @JsonProperty("WKEND_HDAY_OPER_BEGIN_TIME")
+    private String weekendStartTime;
+
+    @JsonProperty("WKEND_HDAY_OPER_END_TIME")
+    private String weekendEndTime;
+
+    @JsonProperty("CHCK_MATTER_WKEND_HDAY_OPN_AT")
+    private String weekendOpenYn;
+
+    @JsonProperty("CHCK_MATTER_NIGHT_OPN_AT")
+    private String nightOpenYn;
+
+    @JsonProperty("CHCK_MATTER_STAYNG_PSBL_AT")
+    private String stayPossibleYn;
+
+    @JsonProperty("COLR_HOLD_ARCNDTN")
+    private Integer coldAirConditionerCount;
+
+    @JsonProperty("COLR_HOLD_ELEFN")
+    private Integer electricFanCount;
+
+    @JsonProperty("AR")
+    private Integer area;
+
+    @JsonProperty("YEAR")
+    private String year;
+
+    @JsonProperty("ARCD")
+    private String areaCode;
+
+    @JsonProperty("MNGDPT_CD")
+    private String managerDeptCode;
+
+    @JsonProperty("MODF_TIME")
+    private String modifiedTime;
+
+    @JsonProperty("INPT_TIME")
+    private String inputTime;
+
+    @JsonProperty("RM")
     private String remark;
-
-    @JsonProperty("LHLDY_OPER_BGNG_HR")
-    private String holidayOpenTime;
-
-    @JsonProperty("WKDY_OPER_END_HR")
-    private String weekdayCloseTime;
 }
