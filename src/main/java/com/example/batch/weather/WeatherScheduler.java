@@ -19,8 +19,6 @@ public class WeatherScheduler {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())
                 .toJobParameters();
-
         jobLauncher.run(weatherJob, params);
     }
-
 }

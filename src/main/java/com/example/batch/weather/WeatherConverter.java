@@ -2,6 +2,7 @@ package com.example.batch.weather;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,17 +23,49 @@ public class WeatherConverter {
             for(WeatherVo.Item item :weathers){
                 switch (item.getCategory()) {
                     case "PTY": resDto.setPty(item.getFcstValue()); break;
-                    case "REH": resDto.setReh(item.getFcstValue()); break;
-                    case "RN1": resDto.setRn1(item.getFcstValue()); break;
-                    case "T1H": resDto.setT1h(item.getFcstValue()); break;
+                    case "PCP": resDto.setPcp(item.getFcstValue()); break;
+                    case "POP": resDto.setPop(item.getFcstValue()); break;
+                    case "WAV": resDto.setWav(item.getFcstValue()); break;
                     case "UUU": resDto.setUuu(item.getFcstValue()); break;
                     case "VEC": resDto.setVec(item.getFcstValue()); break;
                     case "VVV": resDto.setVvv(item.getFcstValue()); break;
                     case "WSD": resDto.setWsd(item.getFcstValue()); break;
+                    case "TMP": resDto.setTmp(item.getFcstValue()); break;
+                    case "SKY": resDto.setSky(item.getFcstValue()); break;
                 }
             }
             res.add(resDto);
         }
         return res;
     }
+    public String getBaseTime() {
+        LocalTime now = LocalTime.now();
+        int hour = now.getHour();
+
+        String baseHour;
+
+        if (hour < 2) {
+            baseHour = "230000";
+        } else if (hour < 5) {
+            baseHour = "020000";
+        } else if (hour < 8) {
+            baseHour = "050000";
+        } else if (hour < 11) {
+            baseHour = "080000";
+        } else if (hour < 14) {
+            baseHour = "110000";
+        } else if (hour < 17) {
+            baseHour = "140000";
+        } else if (hour < 20) {
+            baseHour = "170000";
+        } else if (hour < 23) {
+            baseHour = "200000";
+        } else {
+            baseHour = "230000";
+        }
+
+        // HHmm 형식 문자열로 반환
+        return baseHour;
+    }
+
 }

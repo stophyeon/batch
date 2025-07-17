@@ -14,6 +14,7 @@ import com.example.batch.winter.WinterShelterMapper;
 import com.example.batch.winter.WinterShelterVo;
 import com.example.batch.winter.repository.WinterShelterRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/shelter")
@@ -86,14 +88,15 @@ public class TestController {
         StringBuilder urlBuilder = new StringBuilder(url3);
         urlBuilder.append("?" + "serviceKey=").append(serviceKey3);
         urlBuilder.append("&" + "dataType=json");
-        urlBuilder.append("&"+"base_date").append(now.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-        urlBuilder.append("&"+"base_time").append(now.format(DateTimeFormatter.ofPattern("HHmmss")));
-        urlBuilder.append("&"+"nx").append("60");
-        urlBuilder.append("&"+"ny").append("127");
-
+        urlBuilder.append("&"+"base_date=").append(now.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        urlBuilder.append("&"+"base_time=").append(converter.getBaseTime());
+        urlBuilder.append("&"+"nx=").append("60");
+        urlBuilder.append("&"+"ny=").append("127");
+        String url = urlBuilder.toString();
 
         RestTemplate rest = new RestTemplate();
-        ResponseEntity<WeatherVo> response = rest.getForEntity(urlBuilder.toString(), WeatherVo.class);
+        URI uri = URI.create(url);
+        ResponseEntity<WeatherVo> response = rest.getForEntity(uri, WeatherVo.class);
         List<WeatherDto> weathers= converter.convert(response.getBody().getResponse().getBody().getItems().getItem());
         repository3.saveAll(mapper3.toEntityList(weathers));
         return "Weather SUCCESS";

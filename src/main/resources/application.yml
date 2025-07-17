@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/shelter
     username: root
-    password: dud990531@
+    password: dud990531
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -27,6 +27,6 @@ safe:
       url: "https://www.safetydata.go.kr/V2/api/DSSP-IF-10942"
       serviceKey: "GU0U793IUIOO3KS9"
     weather:
-      url: "ttp://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
+      url: "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
       serviceKey: "xL9ECEGlftsuQit104MUscQtexMMh5yAgllGBOKXMc12gkXriLXuQFcm21Y2pBD9hDwW2sQhi%2BnVDX8AHMrKcg%3D%3D"
 
