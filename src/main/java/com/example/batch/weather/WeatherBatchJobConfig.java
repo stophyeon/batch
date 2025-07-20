@@ -32,7 +32,7 @@ public class WeatherBatchJobConfig {
         return new StepBuilder("weatherStep", jobRepository)
                 .<WeatherDto, WeatherDto>chunk(100, txManager)
                 .reader(reader)
-                .processor(processor)
+                //.processor(processor) 중복 가능
                 .writer(writer)
                 .build();
     }

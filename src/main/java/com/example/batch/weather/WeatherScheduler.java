@@ -14,7 +14,7 @@ public class WeatherScheduler {
     private final JobLauncher jobLauncher;
     private final Job weatherJob;
 
-    @Scheduled(cron = "0 */10 * * * *") // 매 10분마다
+    @Scheduled(cron = "0 0 2,5,8,11,14,17,20,23 * * *") // 매 10분마다
     public void runShelterJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())

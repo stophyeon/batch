@@ -17,6 +17,7 @@ public class Weather {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String baseDate;
     private String fcstTime;
 
     private String tmp;   // 강수형태

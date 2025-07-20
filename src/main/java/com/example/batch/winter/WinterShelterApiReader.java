@@ -19,6 +19,17 @@ public class WinterShelterApiReader implements ItemReader<WinterShelterDto> {
 
     @Value("${safe.api.winter.url}")
     private String url;
+    @Value("${safe.api.numOfRows}")
+    private String rows;
+
+    @Value("${safe.api.startLat}")
+    private String startLat;
+    @Value("${safe.api.startLot}")
+    private String startLot;
+    @Value("${safe.api.endLat}")
+    private String endLat;
+    @Value("${safe.api.endLot}")
+    private String endLot;
     private int index=0;
     @Override
     public WinterShelterDto read() throws Exception {
@@ -27,11 +38,14 @@ public class WinterShelterApiReader implements ItemReader<WinterShelterDto> {
             StringBuilder urlBuilder = new StringBuilder(url);
             urlBuilder.append("?" + "serviceKey=").append(serviceKey);
             urlBuilder.append("&" + "returnType=json");
-
-
+            urlBuilder.append("&" + "numOfRows=").append(rows);
+            urlBuilder.append("&" + "startLat=").append(startLat);
+            urlBuilder.append("&" + "startLot=").append(startLot);
+            urlBuilder.append("&" + "endLat=").append(endLat);
+            urlBuilder.append("&" + "endLot=").append(endLot);
             RestTemplate rest = new RestTemplate();
-            ResponseEntity<WinterShelterDto[]> response = rest.getForEntity(urlBuilder.toString(), WinterShelterDto[].class);
-            shelters = Arrays.asList(response.getBody());
+            ResponseEntity<WinterShelterVo> response = rest.getForEntity(urlBuilder.toString(), WinterShelterVo.class);
+            shelters= response.getBody().getBody();
         }
 
         if (index < shelters.size()) {

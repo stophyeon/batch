@@ -16,7 +16,9 @@ spring:
     name: batch
   batch:
     job:
-      enabled: false
+      enabled: true
+
+
 
 safe:
   api:
@@ -29,4 +31,8 @@ safe:
     weather:
       url: "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
       serviceKey: "xL9ECEGlftsuQit104MUscQtexMMh5yAgllGBOKXMc12gkXriLXuQFcm21Y2pBD9hDwW2sQhi%2BnVDX8AHMrKcg%3D%3D"
-
+    numOfRows: 1000
+    startLat: 36.8938
+    startLot: 126.3692
+    endLat: 38.2951
+    endLot: 127.8407

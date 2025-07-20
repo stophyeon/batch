@@ -19,6 +19,18 @@ public class SummerShelterApiReader implements ItemReader<SummerShelterDto> {
 
     @Value("${safe.api.summer.url}")
     private String url;
+
+    @Value("${safe.api.numOfRows}")
+    private String rows;
+
+    @Value("${safe.api.startLat}")
+    private String startLat;
+    @Value("${safe.api.startLot}")
+    private String startLot;
+    @Value("${safe.api.endLat}")
+    private String endLat;
+    @Value("${safe.api.endLot}")
+    private String endLot;
     private int index=0;
     @Override
     public SummerShelterDto read() throws Exception {
@@ -27,11 +39,15 @@ public class SummerShelterApiReader implements ItemReader<SummerShelterDto> {
             StringBuilder urlBuilder = new StringBuilder(url);
             urlBuilder.append("?" + "serviceKey=").append(serviceKey);
             urlBuilder.append("&" + "returnType=json");
-
+            urlBuilder.append("&" + "numOfRows=").append(rows);
+            urlBuilder.append("&" + "startLat=").append(startLat);
+            urlBuilder.append("&" + "startLot=").append(startLot);
+            urlBuilder.append("&" + "endLat=").append(endLat);
+            urlBuilder.append("&" + "endLot=").append(endLot);
 
             RestTemplate rest = new RestTemplate();
-            ResponseEntity<SummerShelterDto[]> response = rest.getForEntity(urlBuilder.toString(), SummerShelterDto[].class);
-            shelters = Arrays.asList(response.getBody());
+            ResponseEntity<SummerShelterVo> response = rest.getForEntity(urlBuilder.toString(), SummerShelterVo.class);
+            shelters= response.getBody().getBody();
         }
 
         if (index < shelters.size()) {

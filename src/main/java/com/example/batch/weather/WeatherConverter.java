@@ -19,6 +19,7 @@ public class WeatherConverter {
             String key = entry.getKey();
             WeatherDto resDto = new WeatherDto();
             resDto.setFcstTime(key);
+            resDto.setBaseDate(items.getFirst().getBaseDate());
             List<WeatherVo.Item> weathers=grouped.get(key);
             for(WeatherVo.Item item :weathers){
                 switch (item.getCategory()) {

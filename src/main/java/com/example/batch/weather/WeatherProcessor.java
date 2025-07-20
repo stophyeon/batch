@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class WeatherProcessor implements ItemProcessor<WeatherDto, WeatherDto> {
@@ -17,4 +19,6 @@ public class WeatherProcessor implements ItemProcessor<WeatherDto, WeatherDto> {
         //return exist ? null : dto;
         return new WeatherDto();
     }
+
+
 }
