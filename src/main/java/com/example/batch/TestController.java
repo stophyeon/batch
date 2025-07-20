@@ -4,10 +4,7 @@ import com.example.batch.summer.SummerShelterDto;
 import com.example.batch.summer.SummerShelterMapper;
 import com.example.batch.summer.SummerShelterVo;
 import com.example.batch.summer.repository.SummerShelterRepository;
-import com.example.batch.weather.WeatherConverter;
-import com.example.batch.weather.WeatherDto;
-import com.example.batch.weather.WeatherMapper;
-import com.example.batch.weather.WeatherVo;
+import com.example.batch.weather.*;
 import com.example.batch.weather.repository.WeatherRepository;
 import com.example.batch.winter.WinterShelterDto;
 import com.example.batch.winter.WinterShelterMapper;
@@ -43,16 +40,18 @@ public class TestController {
     private final Job summerShelterJob;
     private final Job weatherJob;
     private final JobLauncher jobLauncher;
+   private final WeatherLocationsProperties loc;
 
 
     @PostMapping("/test1")
     public String test() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
-        JobParameters params = new JobParametersBuilder()
-                .addLong("time", System.currentTimeMillis())
-                .toJobParameters();
-        jobLauncher.run(winterShelterJob, params);
-        return "Winter SUCCESS";
+//        JobParameters params = new JobParametersBuilder()
+//                .addLong("time", System.currentTimeMillis())
+//                .toJobParameters();
+//        jobLauncher.run(winterShelterJob, params);
+
+        return loc.getNames().toString();
     }
     @PostMapping("/test2")
     public String test2() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {

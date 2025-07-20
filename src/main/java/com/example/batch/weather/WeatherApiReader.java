@@ -25,19 +25,25 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
 
     @Value("${safe.api.weather.url}")
     private String url;
+
     private final WeatherConverter converter;
+    private final WeatherLocationsProperties properties;
     private int index=0;
+    private int locationIndex = 0;
     @Override
     public WeatherDto read() throws Exception {
-        if(weathers==null) {
+        if (weathers == null || index >= weathers.size()) {
+            if (locationIndex >= 12) {
+                return null; // 모든 지역 끝
+            }
             LocalDateTime now = LocalDateTime.now();
             StringBuilder urlBuilder = new StringBuilder(url);
             urlBuilder.append("?" + "serviceKey=").append(serviceKey);
             urlBuilder.append("&" + "dataType=json");
             urlBuilder.append("&"+"base_date=").append(now.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
             urlBuilder.append("&"+"base_time=").append(converter.getBaseTime());
-            urlBuilder.append("&"+"nx=").append("60");
-            urlBuilder.append("&"+"ny=").append("127");
+            urlBuilder.append("&"+"nx=").append(String.valueOf(properties.getNx().get(locationIndex)));
+            urlBuilder.append("&"+"ny=").append(String.valueOf(properties.getNy().get(locationIndex)));
             String url = urlBuilder.toString();
 
             RestTemplate rest = new RestTemplate();
