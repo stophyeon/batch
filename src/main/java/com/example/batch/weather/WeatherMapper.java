@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface WeatherMapper {
+
     @Mapping(target="id", ignore=true)
     Weather toEntity(WeatherDto dto);
 

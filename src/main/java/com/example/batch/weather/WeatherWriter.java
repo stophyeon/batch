@@ -1,8 +1,6 @@
 package com.example.batch.weather;
 
 import com.example.batch.kafka.WeatherProducer;
-import com.example.batch.summer.SummerShelter;
-import com.example.batch.summer.SummerShelterDto;
 import com.example.batch.weather.repository.WeatherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.Chunk;
