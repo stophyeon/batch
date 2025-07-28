@@ -1,6 +1,6 @@
 package com.example.batch.weather;
 
-import com.example.batch.kafka.WeatherProducer;
+import com.example.batch.kafka.KafkaProducerService;
 import com.example.batch.weather.repository.WeatherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.Chunk;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class WeatherWriter implements ItemWriter<WeatherDto> {
     private final WeatherRepository repository;
     private final WeatherMapper mapper;
-    private final WeatherProducer producer;
+    private final KafkaProducerService producer;
 
     @Override
     public void write(Chunk<? extends WeatherDto> chunk) throws Exception {

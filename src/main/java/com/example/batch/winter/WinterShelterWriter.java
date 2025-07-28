@@ -1,8 +1,6 @@
 package com.example.batch.winter;
 
-import com.example.batch.kafka.WinterShelterProducer;
-import com.example.batch.summer.SummerShelter;
-import com.example.batch.summer.SummerShelterDto;
+import com.example.batch.kafka.KafkaProducerService;
 import com.example.batch.winter.repository.WinterShelterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.Chunk;
@@ -18,7 +16,7 @@ import java.util.stream.Collectors;
 public class WinterShelterWriter implements ItemWriter<WinterShelterDto> {
     private final WinterShelterRepository repository;
     private final WinterShelterMapper mapper;
-    private final WinterShelterProducer producer;
+    private final KafkaProducerService producer;
 
     @Override
     public void write(Chunk<? extends WinterShelterDto> chunk) throws Exception {

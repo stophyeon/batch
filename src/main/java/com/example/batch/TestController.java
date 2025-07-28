@@ -46,12 +46,12 @@ public class TestController {
     @PostMapping("/test1")
     public String test() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
-//        JobParameters params = new JobParametersBuilder()
-//                .addLong("time", System.currentTimeMillis())
-//                .toJobParameters();
-//        jobLauncher.run(winterShelterJob, params);
+        JobParameters params = new JobParametersBuilder()
+                .addLong("time", System.currentTimeMillis())
+                .toJobParameters();
+        jobLauncher.run(winterShelterJob, params);
 
-        return loc.getNames().toString();
+        return "Winter Success";
     }
     @PostMapping("/test2")
     public String test2() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
