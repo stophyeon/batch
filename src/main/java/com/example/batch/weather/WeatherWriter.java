@@ -28,6 +28,6 @@ public class WeatherWriter implements ItemWriter<WeatherDto> {
 
         repository.saveAll(entityList);
         //KAFKA 데이터 전파 로직
-        producer.sendWeatherData(entityList);
+        producer.sendWeatherData(dtoList);
     }
 }

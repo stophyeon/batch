@@ -29,6 +29,6 @@ public class WinterShelterWriter implements ItemWriter<WinterShelterDto> {
         repository.saveAll(entityList);
 
         //KAFKA 데이터 전파 로직
-        producer.sendWinterShelterData(entityList);
+        producer.sendWinterShelterData(dtoList);
     }
 }

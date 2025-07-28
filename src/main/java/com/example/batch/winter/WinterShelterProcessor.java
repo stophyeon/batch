@@ -23,6 +23,7 @@ public class WinterShelterProcessor implements ItemProcessor<WinterShelterDto, W
 
     @Override
     public WinterShelterDto process(WinterShelterDto dto) throws Exception {
+        init();
         return existingIds.contains(dto.getFacilityId()) ? null : dto;
     }
 }

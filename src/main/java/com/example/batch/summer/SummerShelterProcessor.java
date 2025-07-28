@@ -25,6 +25,7 @@ public class SummerShelterProcessor implements ItemProcessor<SummerShelterDto, S
 
     @Override
     public SummerShelterDto process(SummerShelterDto dto) throws Exception {
+        init();
         return existingIds.contains(dto.getFacilityId()) ? null : dto;
     }
 }

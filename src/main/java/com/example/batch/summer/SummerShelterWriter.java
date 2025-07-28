@@ -28,6 +28,6 @@ public class SummerShelterWriter implements ItemWriter<SummerShelterDto> {
 
         repository.saveAll(entityList);
         //KAFKA 데이터 전파
-        producer.sendSummerShelterData(entityList);
+        producer.sendSummerShelterData(dtoList);
     }
 }
