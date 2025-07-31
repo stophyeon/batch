@@ -7,6 +7,8 @@ public class WeatherDto {
     private String baseDate;
     private String fcstTime;
     private String locationName;
+    private Integer nx;
+    private Integer ny;
     private String tmp;   // 강수형태
     private String uuu;   // 습도
     private String vvv;   // 1시간 강수량
@@ -17,5 +19,6 @@ public class WeatherDto {
     private String pop;   // 풍속
     private String wav;   // 풍속
     private String pcp;   // 풍속
+
 
 }

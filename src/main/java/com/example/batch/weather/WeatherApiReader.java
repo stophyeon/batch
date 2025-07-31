@@ -56,7 +56,7 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
             URI uri = URI.create(urlBuilder.toString());
             ResponseEntity<WeatherVo> response = restTemplate.getForEntity(uri, WeatherVo.class);
 
-            weathers=converter.convert(response.getBody().getResponse().getBody().getItems().getItem(),name);
+            weathers=converter.convert(response.getBody().getResponse().getBody().getItems().getItem(),name,nx,ny);
             index = 0;
         }
 
