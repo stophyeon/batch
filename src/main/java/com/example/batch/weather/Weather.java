@@ -22,6 +22,7 @@ public class Weather {
     private Integer nx;
     private Integer ny;
     private String baseDate;
+    private String baseTime;
     private String fcstTime;
 
     private String tmp;   // 강수형태

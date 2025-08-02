@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class WeatherDto {
     private String baseDate;
+    private String baseTime;
     private String fcstTime;
     private String locationName;
     private Integer nx;
