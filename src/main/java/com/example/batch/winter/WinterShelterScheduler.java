@@ -7,15 +7,17 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class WinterShelterScheduler {
     private final JobLauncher jobLauncher;
     private final Job winterShelterJob;
 
     @Scheduled(cron = "0 0 1 * * *")// 매일 1번만
-    public void runShelterJob() throws Exception {
+    public void runWinterShelterJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())
                 .toJobParameters();

@@ -7,16 +7,19 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class WeatherScheduler {
     private final JobLauncher jobLauncher;
     private final Job weatherJob;
     private final Job weatherDeleteJob;
 
-    @Scheduled(cron = "0 0 2,5,8,11,14,17,20,23 * * *") // 매 10분마다
-    public void runShelterJob() throws Exception {
+    @Scheduled(cron = "0 0 2,5,8,11,14,17,20,23 * * *")
+    //@Scheduled(cron = "0 0/5 * * * *")
+    public void runWeatherJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())
                 .toJobParameters();
@@ -29,7 +32,7 @@ public class WeatherScheduler {
                 .addLong("time", System.currentTimeMillis()) // 중복 방지
                 .toJobParameters();
 
-        log.error("[SCHEDULED] Running weather delete job at 00:00");
+        log.error("[SCHEDULED] Running weather delete job at 00:00:00");
         jobLauncher.run(weatherDeleteJob, params);
     }
 }

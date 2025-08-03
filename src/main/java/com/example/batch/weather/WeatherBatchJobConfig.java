@@ -1,6 +1,6 @@
 package com.example.batch.weather;
 
-import com.example.batch.winter.WinterShelterDto;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -15,7 +15,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
 @Configuration
-@EnableScheduling
 @RequiredArgsConstructor
 public class WeatherBatchJobConfig {
 
