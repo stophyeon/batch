@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batch-deployment
+  labels:
+    app: batch
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: batch
+  template:
+    metadata:
+      labels:
+        app: batch
+    spec:
+      containers:
+        - name: batch-container
+          image: nexus.mycompany.com/batch:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8090
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: batch-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: batch
+  ports:
+    - protocol: TCP
+      port: 90
+      targetPort: 8090

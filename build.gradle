@@ -22,7 +22,9 @@ configurations {
 repositories {
 	mavenCentral()
 }
-
+bootJar {
+	archiveFileName = 'batch.jar'
+}
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-batch'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
