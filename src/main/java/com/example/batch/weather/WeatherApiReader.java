@@ -2,6 +2,7 @@ package com.example.batch.weather;
 
 import com.example.batch.winter.WinterShelterDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class WeatherApiReader implements ItemReader<WeatherDto> {
 
     private List<WeatherDto> weathers;
@@ -32,7 +34,10 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
     private int locationIndex = 0;
     @Override
     public WeatherDto read() throws Exception {
-        if (weathers == null || index >= weathers.size()) {
+        //log.error("날씨 배치");
+        //log.error(String.valueOf(locationIndex));
+
+
             if (locationIndex >= properties.getNames().size()) {
                 return null; // 모든 지역에 대해 처리 완료
             }
@@ -58,7 +63,7 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
 
             weathers=converter.convert(response.getBody().getResponse().getBody().getItems().getItem(),name,nx,ny,converter.getBaseTime());
             index = 0;
-        }
+
 
         return weathers.get(index++);
     }
