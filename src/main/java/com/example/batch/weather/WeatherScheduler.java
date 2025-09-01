@@ -17,7 +17,7 @@ public class WeatherScheduler {
     private final Job weatherJob;
     private final Job weatherDeleteJob;
 
-    @Scheduled(cron = "0 0 0,3,6,9,12,15,18,21, * * *",zone="Asia/Seoul")
+    @Scheduled(cron = "0 0 0/3 * * *",zone="Asia/Seoul")
     //@Scheduled(cron = "0 0/5 * * * *")
     public void runWeatherJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
