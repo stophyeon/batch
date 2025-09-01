@@ -50,28 +50,28 @@ public class WeatherConverter {
 
         String baseHour;
 
-        if (hour <= 2) {
+        if (hour == 0) {
             baseHour = "230000";
             return baseHour;
-        } else if (hour <= 5) {
+        } else if (hour <= 3) {
             baseHour = "020000";
             return baseHour;
-        } else if (hour <= 8) {
+        } else if (hour <= 6) {
             baseHour = "050000";
             return baseHour;
-        } else if (hour <= 11) {
+        } else if (hour <= 9) {
             baseHour = "080000";
             return baseHour;
-        } else if (hour <= 14) {
+        } else if (hour <= 12) {
             baseHour = "110000";
             return baseHour;
-        } else if (hour <= 17) {
+        } else if (hour <= 15) {
             baseHour = "140000";
             return baseHour;
-        } else if (hour <= 20) {
+        } else if (hour <= 18) {
             baseHour = "170000";
             return baseHour;
-        } else if (hour <= 23) {
+        } else if (hour <= 21) {
             baseHour = "200000";
             return baseHour;
         } else {
