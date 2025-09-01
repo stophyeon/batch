@@ -34,8 +34,7 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
     private int locationIndex = 0;
     @Override
     public WeatherDto read() throws Exception {
-        //log.error("날씨 배치");
-        //log.error(String.valueOf(locationIndex));
+
 
 
             if (locationIndex >= properties.getNames().size()) {
@@ -48,7 +47,8 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
             locationIndex++; // 다음 지역으로 이동
 
             LocalDateTime now = LocalDateTime.now();
-
+            log.error("날씨 배치 실행");
+            log.error(now.toString());
             StringBuilder urlBuilder = new StringBuilder(url);
             urlBuilder.append("?serviceKey=").append(serviceKey);
             urlBuilder.append("&dataType=json");

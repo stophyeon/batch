@@ -16,7 +16,7 @@ public class WinterShelterScheduler {
     private final JobLauncher jobLauncher;
     private final Job winterShelterJob;
 
-    @Scheduled(cron = "0 0 1 * * *")// 매일 1번만
+    @Scheduled(cron = "0 0 1 * * *",zone="Asia/Seoul")// 매일 1번만
     public void runWinterShelterJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())

@@ -16,7 +16,7 @@ public class SummerShelterScheduler {
     private final JobLauncher jobLauncher;
     private final Job summerShelterJob;
 
-    @Scheduled(cron = "0 0 1 * * *")// 매일 1번만
+    @Scheduled(cron = "0 0 1 * * *",zone="Asia/Seoul")// 매일 1번만
     public void runSummerShelterJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())
