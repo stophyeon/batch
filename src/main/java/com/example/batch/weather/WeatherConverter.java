@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class WeatherConverter {
-    public List<WeatherDto> convert(List<WeatherVo.Item> items,String locName,int nx, int ny,String bseTime){
+    public WeatherDto convert(List<WeatherVo.Item> items,String locName,int nx, int ny,String bseTime){
         Map<String, List<WeatherVo.Item>> grouped = items.stream()
                 .collect(Collectors.groupingBy(WeatherVo.Item::getFcstTime));
 
-        List<WeatherDto> res = new ArrayList<>();
+        WeatherDto resDto = new WeatherDto();
         for(Map.Entry<String, List<WeatherVo.Item>> entry : grouped.entrySet()){
             String key = entry.getKey();
-            WeatherDto resDto = new WeatherDto();
+
             resDto.setFcstTime(key);
             resDto.setLocationName(locName);
             resDto.setNx(nx);
@@ -40,9 +40,9 @@ public class WeatherConverter {
                     case "SKY": resDto.setSky(item.getFcstValue()); break;
                 }
             }
-            res.add(resDto);
+
         }
-        return res;
+        return resDto;
     }
     public String getBaseTime() {
         LocalTime now = LocalTime.now();

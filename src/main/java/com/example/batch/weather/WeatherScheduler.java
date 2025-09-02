@@ -26,7 +26,7 @@ public class WeatherScheduler {
         jobLauncher.run(weatherJob, params);
     }
 
-    @Scheduled(cron = "0 0 2 * * *",zone="Asia/Seoul") // 매일 03시
+    @Scheduled(cron = "0 0 2 * * *",zone="Asia/Seoul") // 매일 02시
     public void runWeatherDeleteJob() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis()) // 중복 방지

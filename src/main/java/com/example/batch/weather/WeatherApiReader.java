@@ -12,15 +12,14 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
+
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class WeatherApiReader implements ItemReader<WeatherDto> {
 
-    private List<WeatherDto> weathers;
+
 
     @Value("${safe.api.weather.serviceKey}")
     private String serviceKey;
@@ -30,21 +29,22 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
 
     private final WeatherConverter converter;
     private final WeatherLocationsProperties properties;
-    private int index=0;
-    private int locationIndex = 0;
+    private int i=0;
+
     @Override
     public WeatherDto read() throws Exception {
 
 
 
-            if (locationIndex >= properties.getNames().size()) {
-                return null; // 모든 지역에 대해 처리 완료
+            if(i>=properties.getNames().size()){
+                i=0;
+                return null;
             }
 
-            String name = properties.getNames().get(locationIndex);
-            int nx = properties.getNx().get(locationIndex);
-            int ny = properties.getNy().get(locationIndex);
-            locationIndex++; // 다음 지역으로 이동
+            String name = properties.getNames().get(i);
+            int nx = properties.getNx().get(i);
+            int ny = properties.getNy().get(i);
+
 
             LocalDateTime now = LocalDateTime.now();
             log.error("날씨 배치 실행");
@@ -60,11 +60,12 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
             RestTemplate restTemplate = new RestTemplate();
             URI uri = URI.create(urlBuilder.toString());
             ResponseEntity<WeatherVo> response = restTemplate.getForEntity(uri, WeatherVo.class);
+            i++;
+            return converter.convert(response.getBody().getResponse().getBody().getItems().getItem(), name, nx, ny, converter.getBaseTime());
 
-            weathers=converter.convert(response.getBody().getResponse().getBody().getItems().getItem(),name,nx,ny,converter.getBaseTime());
-            index = 0;
 
 
-        return weathers.get(index++);
+
+
     }
 }
