@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 
 @Component
@@ -61,6 +62,9 @@ public class WeatherApiReader implements ItemReader<WeatherDto> {
             URI uri = URI.create(urlBuilder.toString());
             ResponseEntity<WeatherVo> response = restTemplate.getForEntity(uri, WeatherVo.class);
             i++;
+            if(Objects.requireNonNull(response.getBody()).getResponse()==null){
+                return null;
+            }
             return converter.convert(response.getBody().getResponse().getBody().getItems().getItem(), name, nx, ny, converter.getBaseTime());
 
 
